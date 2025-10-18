@@ -1,31 +1,9 @@
 (function () {
-  const docEl = document.documentElement;
-  const themeToggle = document.getElementById('theme-toggle');
-  const prefersLight = window.matchMedia('(prefers-color-scheme: light)');
-
-  function applyTheme(theme) {
-    if (theme === 'light') {
-      docEl.classList.add('light');
-    } else {
-      docEl.classList.remove('light');
-    }
-  }
-
-  const storedTheme = localStorage.getItem('theme');
-  applyTheme(storedTheme || (prefersLight.matches ? 'light' : 'dark'));
-
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      const currentlyLight = docEl.classList.contains('light');
-      const nextTheme = currentlyLight ? 'dark' : 'light';
-      localStorage.setItem('theme', nextTheme);
-      applyTheme(nextTheme);
-    });
-  }
-
+  // Set current year
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
+  // Mobile navigation
   const navToggle = document.querySelector('.nav-toggle');
   const navMenu = document.getElementById('nav-menu');
   if (navToggle && navMenu) {

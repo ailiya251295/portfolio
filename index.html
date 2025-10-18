@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0f172a" />
+    <title>Ilia Avramenko – Designer Portfolio</title>
+    <meta name="description" content="Portfolio website for a designer showcasing selected work, services, and contact details." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles/main.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="Go to home">
+        <img src="assets/placeholder.svg" alt="Logo" width="28" height="28" />
+        <span>Ilia Avramenko</span>
+      </a>
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">Menu</button>
+        <ul id="nav-menu" class="nav-menu">
+          <li><a href="#work">Work</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+        <span class="sun">☀️</span>
+        <span class="moon">🌙</span>
+      </button>
+    </header>
+
+    <main id="home" class="site-main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="container">
+          <h1 id="hero-title">Design that blends form and function</h1>
+          <p class="lead">I’m a multidisciplinary designer crafting thoughtful brands, clean interfaces, and intuitive experiences.</p>
+          <div class="hero-cta">
+            <a class="button primary" href="#work">View Work</a>
+            <a class="button ghost" href="#contact">Let’s talk</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="work" class="section" aria-labelledby="work-title">
+        <div class="container">
+          <div class="section-header">
+            <h2 id="work-title">Selected Work</h2>
+            <div class="filters" role="tablist" aria-label="Work filters">
+              <button class="filter-chip active" data-filter="all" role="tab" aria-selected="true">All</button>
+              <button class="filter-chip" data-filter="branding" role="tab" aria-selected="false">Branding</button>
+              <button class="filter-chip" data-filter="ui" role="tab" aria-selected="false">UI</button>
+              <button class="filter-chip" data-filter="illustration" role="tab" aria-selected="false">Illustration</button>
+            </div>
+          </div>
+
+          <div class="grid portfolio-grid" id="portfolio-grid">
+            <!-- Example project cards -->
+            <article class="card" data-category="branding">
+              <button class="card-media" data-lightbox="/assets/placeholder.svg" aria-label="Open project image">
+                <img src="assets/placeholder.svg" alt="Project cover" />
+              </button>
+              <div class="card-body">
+                <h3 class="card-title">Nordic Coffee Co.</h3>
+                <p class="card-meta">Brand identity, packaging, art direction</p>
+              </div>
+            </article>
+
+            <article class="card" data-category="ui">
+              <button class="card-media" data-lightbox="/assets/placeholder.svg" aria-label="Open project image">
+                <img src="assets/placeholder.svg" alt="Project cover" />
+              </button>
+              <div class="card-body">
+                <h3 class="card-title">Flow Finance</h3>
+                <p class="card-meta">Product design, design system</p>
+              </div>
+            </article>
+
+            <article class="card" data-category="illustration">
+              <button class="card-media" data-lightbox="/assets/placeholder.svg" aria-label="Open project image">
+                <img src="assets/placeholder.svg" alt="Project cover" />
+              </button>
+              <div class="card-body">
+                <h3 class="card-title">City Stories</h3>
+                <p class="card-meta">Editorial illustration</p>
+              </div>
+            </article>
+
+            <article class="card" data-category="ui">
+              <button class="card-media" data-lightbox="/assets/placeholder.svg" aria-label="Open project image">
+                <img src="assets/placeholder.svg" alt="Project cover" />
+              </button>
+              <div class="card-body">
+                <h3 class="card-title">Wellness App</h3>
+                <p class="card-meta">Mobile UI, prototyping</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section" aria-labelledby="about-title">
+        <div class="container about">
+          <div>
+            <h2 id="about-title">About</h2>
+            <p>I’m Ilia, a designer focused on clarity, craft, and meaningful outcomes. I collaborate with founders and teams to build brands and products that people trust and enjoy.</p>
+            <ul class="bullets">
+              <li>10+ years across brand, product, and illustration</li>
+              <li>System-driven, detail-oriented, research-informed</li>
+              <li>Available for select freelance projects</li>
+            </ul>
+          </div>
+          <div class="about-aside">
+            <div class="stat">
+              <span class="stat-value">50+</span>
+              <span class="stat-label">Projects shipped</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">12</span>
+              <span class="stat-label">Design systems</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">8</span>
+              <span class="stat-label">Industries</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="section" aria-labelledby="services-title">
+        <div class="container">
+          <h2 id="services-title">Services</h2>
+          <div class="grid services-grid">
+            <div class="service">
+              <h3>Brand Identity</h3>
+              <p>Logos, typography, color, and systems that scale across touchpoints.</p>
+            </div>
+            <div class="service">
+              <h3>Product & UI</h3>
+              <p>Web and mobile interfaces that are usable, accessible, and beautiful.</p>
+            </div>
+            <div class="service">
+              <h3>Illustration</h3>
+              <p>Editorial and brand illustration to add character and clarity.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section" aria-labelledby="contact-title">
+        <div class="container contact">
+          <div>
+            <h2 id="contact-title">Let’s build something</h2>
+            <p>For project inquiries and collaborations, reach out and I’ll get back within 1–2 business days.</p>
+            <ul class="contact-list">
+              <li><a href="mailto:ailiya251295@gmail.com">ailiya251295@gmail.com</a></li>
+              <li><a href="https://github.com/ailiya251295" target="_blank" rel="noreferrer noopener">GitHub</a></li>
+              <li><a href="#" aria-disabled="true">Dribbble (soon)</a></li>
+              <li><a href="#" aria-disabled="true">Behance (soon)</a></li>
+            </ul>
+          </div>
+          <form class="contact-form" name="contact" netlify>
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button class="button primary" type="submit">Send</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© <span id="year"></span> Ilia Avramenko. All rights reserved.</p>
+        <a class="back-to-top" href="#home" aria-label="Back to top">↑</a>
+      </div>
+    </footer>
+
+    <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="Image preview">
+      <button class="lightbox-close" aria-label="Close preview">×</button>
+      <img class="lightbox-image" alt="Preview" />
+    </div>
+
+    <script src="scripts/main.js"></script>
+  </body>
+  </html>
+
+
+

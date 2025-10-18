@@ -11,7 +11,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles/main.css" />
   </head>
-  <body>
+    <!-- Password Protection Overlay -->
+    <div id="password-overlay" class="password-overlay">
+      <div class="password-modal">
+        <div class="password-header">
+          <h2>Portfolio Access</h2>
+          <p>Please enter the password to view this portfolio</p>
+        </div>
+        <form id="password-form" class="password-form">
+          <div class="password-field">
+            <input type="password" id="password-input" placeholder="Enter password" required>
+            <button type="submit" class="password-submit">Access Portfolio</button>
+          </div>
+          <div id="password-error" class="password-error" style="display: none;">
+            Incorrect password. Please try again.
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="main-content" style="display: none;">
     <header class="site-header">
       <a class="brand" href="#home" aria-label="Go to home">
         <img src="assets/placeholder.svg" alt="Logo" width="28" height="28" />
@@ -189,6 +208,7 @@
     </div>
 
     <script src="scripts/main.js"></script>
+    </div> <!-- End main-content -->
   </body>
   </html>
 

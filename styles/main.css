@@ -46,6 +46,10 @@ img { max-width: 100%; height: auto; display: block; }
 .nav-menu { display: flex; gap: .75rem; list-style: none; margin: 0; padding: 0; }
 .nav-menu a { text-decoration: none; color: var(--muted); padding: .4rem .6rem; border-radius: .5rem; }
 .nav-menu a:hover { color: var(--text); background: var(--elev); }
+.header-contact { margin-left: 1rem; }
+@media (max-width: 760px) {
+  .header-contact { display: none; }
+}
 
 /* Theme toggle removed for clean white design */
 
@@ -128,22 +132,82 @@ img { max-width: 100%; height: auto; display: block; }
   overflow: hidden; 
   transition: all .2s ease;
 }
+.kalido-featured { 
+  grid-column: span 12; 
+  background: var(--surface); 
+  border: 2px solid var(--brand); 
+  border-radius: .8rem; 
+  overflow: hidden; 
+  transition: all .2s ease;
+  position: relative;
+}
+.kalido-featured::before {
+  content: 'Featured Project';
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--brand);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  z-index: 10;
+}
 .card:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0,0,0,0.08);
   border-color: var(--brand);
 }
+.kalido-featured:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+}
 .card-media { display: block; width: 100%; border: none; padding: 0; background: transparent; cursor: zoom-in; }
 .card-media img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+.kalido-featured .card-media img { aspect-ratio: 16 / 8; }
 .card-body { padding: .9rem; border-top: 1px solid var(--border); }
+.kalido-featured .card-body { padding: 1.5rem; }
 .card-title { margin: 0 0 .25rem; font-size: 1.05rem; }
-.card-meta { margin: 0; color: var(--muted); font-size: .95rem; }
+.kalido-featured .card-title { font-size: 1.3rem; font-weight: 700; }
+.card-meta { margin: 0 0 1rem; color: var(--muted); font-size: .95rem; }
+.kalido-featured .card-meta { font-size: 1rem; margin-bottom: 1.5rem; }
+.subprojects { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+  gap: 1rem; 
+  margin-top: 1rem;
+}
+.subproject { 
+  background: var(--elev); 
+  padding: 1rem; 
+  border-radius: .5rem; 
+  border: 1px solid var(--border);
+}
+.subproject h4 { 
+  margin: 0 0 .5rem; 
+  font-size: .95rem; 
+  font-weight: 600; 
+  color: var(--text);
+}
+.subproject p { 
+  margin: 0; 
+  font-size: .85rem; 
+  color: var(--muted); 
+  line-height: 1.4;
+}
 
 @media (min-width: 640px) {
   .card { grid-column: span 6; }
+  .kalido-featured { grid-column: span 12; }
 }
 @media (min-width: 960px) {
   .card { grid-column: span 4; }
+  .kalido-featured { grid-column: span 12; }
+  .subprojects { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1200px) {
+  .subprojects { grid-template-columns: repeat(4, 1fr); }
 }
 
 .about { display: grid; gap: 2rem; grid-template-columns: 1fr; }
@@ -207,6 +271,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .contact { display: grid; gap: 2rem; grid-template-columns: 1fr; }
+.contact-actions { margin: 1.5rem 0; }
 .contact-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
 .contact-list a { color: var(--text); text-decoration: none; }
 .contact-list a:hover { text-decoration: underline; }

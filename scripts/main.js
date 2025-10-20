@@ -78,6 +78,102 @@
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
+  // Custom Cursor Implementation
+  function initCustomCursor() {
+    // Check if cursor should be disabled
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+        window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
+      return;
+    }
+
+    const cursor = document.getElementById('cursor');
+    const primary = document.getElementById('cursor-primary');
+    const trail = document.getElementById('cursor-trail');
+    const label = document.getElementById('cursor-label');
+
+    if (!cursor || !primary || !trail || !label) return;
+
+    let mouseX = 0, mouseY = 0;
+    let trailX = 0, trailY = 0;
+
+    // Mouse movement tracking
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      
+      requestAnimationFrame(() => {
+        cursor.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+      });
+    });
+
+    // Trail effect with delay
+    function updateTrail() {
+      const diffX = mouseX - trailX;
+      const diffY = mouseY - trailY;
+      
+      trailX += diffX * 0.1;
+      trailY += diffY * 0.1;
+      
+      trail.style.transform = `translate(${trailX}px, ${trailY}px)`;
+      requestAnimationFrame(updateTrail);
+    }
+    updateTrail();
+
+    // Hover state management
+    function toggleHover(element, scale = 1.6, text = '', className = 'cursor-hover') {
+      element.addEventListener('mouseenter', () => {
+        document.body.classList.add(className);
+        if (text) {
+          label.textContent = text;
+          label.style.opacity = '1';
+        }
+      });
+      
+      element.addEventListener('mouseleave', () => {
+        document.body.classList.remove(className);
+        label.style.opacity = '0';
+      });
+    }
+
+    // Apply hover effects to different elements
+    document.querySelectorAll('a').forEach(el => {
+      toggleHover(el, 1.8, '', 'cursor-hover');
+    });
+
+    document.querySelectorAll('button').forEach(el => {
+      toggleHover(el, 1.4, 'Click', 'cursor-button');
+    });
+
+    document.querySelectorAll('[data-cursor-label]').forEach(el => {
+      toggleHover(el, 1, el.dataset.cursorLabel, 'cursor-hover');
+    });
+
+    // Text hover effect
+    document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, span, li').forEach(el => {
+      toggleHover(el, 1, '', 'cursor-text');
+    });
+
+    // Click ripple effect
+    document.addEventListener('mousedown', () => {
+      const ring = document.createElement('div');
+      ring.className = 'click-ring';
+      cursor.appendChild(ring);
+      setTimeout(() => ring.remove(), 300);
+    });
+
+    // Hide cursor when leaving window
+    document.addEventListener('mouseleave', () => {
+      cursor.style.opacity = '0';
+    });
+
+    document.addEventListener('mouseenter', () => {
+      cursor.style.opacity = '1';
+    });
+  }
+
+  // Initialize custom cursor
+  initCustomCursor();
+
   // Mobile navigation
   const navToggle = document.querySelector('.nav-toggle');
   const navMenu = document.getElementById('nav-menu');

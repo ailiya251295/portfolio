@@ -159,6 +159,53 @@ img { max-width: 100%; height: auto; display: block; }
 .service { grid-column: span 12; background: var(--surface); border: 1px solid var(--border); border-radius: .9rem; padding: 1rem; }
 @media (min-width: 720px) { .service { grid-column: span 4; } }
 
+.skills-grid { grid-template-columns: repeat(12, 1fr); gap: 1.5rem; }
+.skill-category { grid-column: span 12; background: var(--surface); border: 1px solid var(--border); border-radius: .9rem; padding: 1.5rem; }
+.skill-category h3 { margin: 0 0 1rem; color: var(--text); font-size: 1.1rem; font-weight: 600; }
+.skill-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .5rem; }
+.skill-list li { color: var(--muted); font-size: .95rem; padding: .3rem 0; }
+@media (min-width: 720px) { .skill-category { grid-column: span 4; } }
+
+.experience-timeline { display: grid; gap: 2rem; }
+.experience-item { 
+  background: var(--surface); 
+  border: 1px solid var(--border); 
+  border-radius: .9rem; 
+  padding: 1.5rem; 
+  position: relative;
+}
+.experience-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--brand);
+  border-radius: 0 .2rem .2rem 0;
+}
+.experience-header { margin-bottom: 1rem; }
+.experience-header h3 { margin: 0 0 .5rem; font-size: 1.2rem; font-weight: 600; }
+.experience-meta { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: .5rem; }
+.experience-meta span { color: var(--muted); font-size: .9rem; }
+.company { font-weight: 600; color: var(--text) !important; }
+.experience-content p { margin: 0 0 1rem; color: var(--muted); }
+.achievements { list-style: none; margin: 0; padding: 0; }
+.achievements li { 
+  position: relative; 
+  padding-left: 1.5rem; 
+  margin-bottom: .5rem; 
+  color: var(--text);
+  font-size: .95rem;
+}
+.achievements li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--brand);
+  font-weight: bold;
+}
+
 .contact { display: grid; gap: 2rem; grid-template-columns: 1fr; }
 .contact-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
 .contact-list a { color: var(--text); text-decoration: none; }

@@ -204,6 +204,18 @@
 
   // Gallery definitions
   const galleries = {
+    'kalido-gallery': [
+      'assets/placeholder.svg'
+    ],
+    'collaby-gallery': [
+      'assets/placeholder.svg'
+    ],
+    'vtb-gallery': [
+      'assets/placeholder.svg'
+    ],
+    'ferrari-gallery': [
+      'assets/placeholder.svg'
+    ],
     'jj-gallery': [
       'assets/J&J_0-1.png',
       'assets/J&J_0.png',
@@ -221,6 +233,9 @@
       'assets/J&J_12.png',
       'assets/J&J_13.jpg',
       'assets/J&J_14.jpg'
+    ],
+    'avito-gallery': [
+      'assets/placeholder.svg'
     ]
   };
 
@@ -314,13 +329,103 @@
     if (e.target === lightbox) closeLightbox();
   });
 
-  // Handle gallery triggers
+  // Case Study Modal
+  const caseModal = document.getElementById('case-modal');
+  const caseModalImg = caseModal?.querySelector('.case-modal-image');
+  const caseModalClose = caseModal?.querySelector('.case-modal-close');
+  const caseModalPrev = caseModal?.querySelector('.case-modal-prev');
+  const caseModalNext = caseModal?.querySelector('.case-modal-next');
+  const caseModalCounter = caseModal?.querySelector('.case-modal-counter');
+  
+  let modalGallery = null;
+  let modalIndex = 0;
+
+  function openCaseModal(src, galleryId = null) {
+    if (!caseModal || !caseModalImg) return;
+    
+    if (galleryId && galleries[galleryId]) {
+      modalGallery = galleries[galleryId];
+      modalIndex = modalGallery.indexOf(src);
+      if (modalIndex === -1) modalIndex = 0;
+      updateCaseModalImage();
+      updateCaseModalNavigation();
+    } else {
+      modalGallery = null;
+      caseModalImg.setAttribute('src', src);
+      caseModalPrev.style.display = 'none';
+      caseModalNext.style.display = 'none';
+      caseModalCounter.style.display = 'none';
+    }
+    
+    caseModal.classList.add('open');
+    caseModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', onCaseModalKeyDown);
+  }
+
+  function updateCaseModalImage() {
+    if (!modalGallery || modalIndex < 0 || modalIndex >= modalGallery.length) return;
+    caseModalImg.setAttribute('src', modalGallery[modalIndex]);
+    updateCaseModalCounter();
+  }
+
+  function updateCaseModalCounter() {
+    if (!modalGallery) return;
+    caseModalCounter.textContent = `${modalIndex + 1} / ${modalGallery.length}`;
+    caseModalCounter.style.display = 'block';
+  }
+
+  function updateCaseModalNavigation() {
+    if (!modalGallery) return;
+    caseModalPrev.style.display = 'flex';
+    caseModalNext.style.display = 'flex';
+    caseModalPrev.disabled = modalIndex === 0;
+    caseModalNext.disabled = modalIndex === modalGallery.length - 1;
+  }
+
+  function navigateCaseModal(direction) {
+    if (!modalGallery) return;
+    if (direction === 'prev' && modalIndex > 0) {
+      modalIndex--;
+    } else if (direction === 'next' && modalIndex < modalGallery.length - 1) {
+      modalIndex++;
+    }
+    updateCaseModalImage();
+    updateCaseModalNavigation();
+  }
+
+  function closeCaseModal() {
+    if (!caseModal) return;
+    caseModal.classList.remove('open');
+    caseModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    modalGallery = null;
+    modalIndex = 0;
+    document.removeEventListener('keydown', onCaseModalKeyDown);
+  }
+
+  function onCaseModalKeyDown(e) {
+    if (e.key === 'Escape') {
+      closeCaseModal();
+    } else if (e.key === 'ArrowLeft' && modalGallery) {
+      navigateCaseModal('prev');
+    } else if (e.key === 'ArrowRight' && modalGallery) {
+      navigateCaseModal('next');
+    }
+  }
+
+  caseModalClose?.addEventListener('click', closeCaseModal);
+  caseModalPrev?.addEventListener('click', () => navigateCaseModal('prev'));
+  caseModalNext?.addEventListener('click', () => navigateCaseModal('next'));
+  caseModal?.querySelector('.case-modal-backdrop')?.addEventListener('click', closeCaseModal);
+
+  // Handle gallery triggers - open case modal
   document.querySelectorAll('[data-gallery]').forEach((el) => {
     el.addEventListener('click', () => {
       const galleryId = el.getAttribute('data-gallery');
       const imgSrc = el.querySelector('img')?.getAttribute('src');
       if (galleryId && galleries[galleryId] && imgSrc) {
-        openLightbox(imgSrc, galleryId);
+        openCaseModal(imgSrc, galleryId);
       }
     });
   });

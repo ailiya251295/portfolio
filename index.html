@@ -74,7 +74,7 @@
           <div class="grid portfolio-grid" id="portfolio-grid">
             <!-- Kalido Project - Big Card -->
             <article class="card case-card case-featured" data-category="product">
-              <button class="card-media" data-lightbox="/assets/placeholder.svg" aria-label="Open project image">
+              <button class="card-media" data-gallery="kalido-gallery" aria-label="Open Kalido case study">
                 <img src="assets/placeholder.svg" alt="Kalido AI-Powered Internal Talent Marketplace" />
               </button>
               <div class="card-body">
@@ -102,8 +102,8 @@
             </article>
 
             <!-- CollabY Project -->
-            <article class="card case-card" data-category="product">
-              <button class="card-media" data-lightbox="/assets/placeholder.svg" aria-label="Open project image">
+            <article class="card case-card case-featured" data-category="product">
+              <button class="card-media" data-gallery="collaby-gallery" aria-label="Open CollabY case study">
                 <img src="assets/placeholder.svg" alt="CollabY Decentralized Influencer dApp" />
               </button>
               <div class="card-body">
@@ -113,8 +113,8 @@
             </article>
 
             <!-- VTB Bank Project -->
-            <article class="card case-card" data-category="fintech">
-              <button class="card-media" data-lightbox="/assets/placeholder.svg" aria-label="Open project image">
+            <article class="card case-card case-featured" data-category="fintech">
+              <button class="card-media" data-gallery="vtb-gallery" aria-label="Open VTB Bank case study">
                 <img src="assets/placeholder.svg" alt="VTB Bank Digital Banking Platform" />
               </button>
               <div class="card-body">
@@ -124,8 +124,8 @@
             </article>
 
             <!-- Ferrari Project -->
-            <article class="card case-card" data-category="product">
-              <button class="card-media" data-lightbox="/assets/placeholder.svg" aria-label="Open project image">
+            <article class="card case-card case-featured" data-category="product">
+              <button class="card-media" data-gallery="ferrari-gallery" aria-label="Open Ferrari case study">
                 <img src="assets/placeholder.svg" alt="Ferrari Digital Experience" />
               </button>
               <div class="card-body">
@@ -135,7 +135,7 @@
             </article>
 
             <!-- Johnson & Johnson Project -->
-            <article class="card case-card" data-category="product">
+            <article class="card case-card case-featured" data-category="product">
               <button class="card-media" data-gallery="jj-gallery" aria-label="Open Johnson & Johnson case study">
                 <img src="assets/J&J_0-1.png" alt="Johnson & Johnson Healthcare Platform" />
               </button>
@@ -146,8 +146,8 @@
             </article>
 
             <!-- Avito Project -->
-            <article class="card case-card" data-category="mobile">
-              <button class="card-media" data-lightbox="/assets/placeholder.svg" aria-label="Open project image">
+            <article class="card case-card case-featured" data-category="mobile">
+              <button class="card-media" data-gallery="avito-gallery" aria-label="Open Avito case study">
                 <img src="assets/placeholder.svg" alt="Avito Mobile Marketplace" />
               </button>
               <div class="card-body">
@@ -235,6 +235,21 @@
       </div>
     </footer>
 
+    <!-- Case Study Modal -->
+    <div id="case-modal" class="case-modal" aria-hidden="true" role="dialog" aria-label="Case study">
+      <div class="case-modal-backdrop"></div>
+      <div class="case-modal-container">
+        <button class="case-modal-close" aria-label="Close case study">×</button>
+        <button class="case-modal-prev" aria-label="Previous image">‹</button>
+        <button class="case-modal-next" aria-label="Next image">›</button>
+        <div class="case-modal-content">
+          <img class="case-modal-image" alt="Case study image" />
+          <div class="case-modal-counter" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Legacy lightbox (kept for compatibility) -->
     <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="Image preview">
       <button class="lightbox-close" aria-label="Close preview">×</button>
       <button class="lightbox-prev" aria-label="Previous image">‹</button>

@@ -73,7 +73,7 @@
 
           <div class="grid portfolio-grid" id="portfolio-grid">
             <!-- Kalido Project - Big Card -->
-            <article class="card kalido-featured" data-category="product">
+            <article class="card case-card case-featured" data-category="product">
               <button class="card-media" data-lightbox="/assets/placeholder.svg" aria-label="Open project image">
                 <img src="assets/placeholder.svg" alt="Kalido AI-Powered Internal Talent Marketplace" />
               </button>
@@ -102,7 +102,7 @@
             </article>
 
             <!-- CollabY Project -->
-            <article class="card" data-category="product">
+            <article class="card case-card" data-category="product">
               <button class="card-media" data-lightbox="/assets/placeholder.svg" aria-label="Open project image">
                 <img src="assets/placeholder.svg" alt="CollabY Decentralized Influencer dApp" />
               </button>
@@ -113,7 +113,7 @@
             </article>
 
             <!-- VTB Bank Project -->
-            <article class="card" data-category="fintech">
+            <article class="card case-card" data-category="fintech">
               <button class="card-media" data-lightbox="/assets/placeholder.svg" aria-label="Open project image">
                 <img src="assets/placeholder.svg" alt="VTB Bank Digital Banking Platform" />
               </button>
@@ -124,7 +124,7 @@
             </article>
 
             <!-- Ferrari Project -->
-            <article class="card" data-category="product">
+            <article class="card case-card" data-category="product">
               <button class="card-media" data-lightbox="/assets/placeholder.svg" aria-label="Open project image">
                 <img src="assets/placeholder.svg" alt="Ferrari Digital Experience" />
               </button>
@@ -135,9 +135,9 @@
             </article>
 
             <!-- Johnson & Johnson Project -->
-            <article class="card" data-category="product">
-              <button class="card-media" data-lightbox="/assets/placeholder.svg" aria-label="Open project image">
-                <img src="assets/placeholder.svg" alt="Johnson & Johnson Healthcare Platform" />
+            <article class="card case-card" data-category="product">
+              <button class="card-media" data-gallery="jj-gallery" aria-label="Open Johnson & Johnson case study">
+                <img src="assets/J&J_0-1.png" alt="Johnson & Johnson Healthcare Platform" />
               </button>
               <div class="card-body">
                 <h3 class="card-title">Johnson & Johnson</h3>
@@ -146,7 +146,7 @@
             </article>
 
             <!-- Avito Project -->
-            <article class="card" data-category="mobile">
+            <article class="card case-card" data-category="mobile">
               <button class="card-media" data-lightbox="/assets/placeholder.svg" aria-label="Open project image">
                 <img src="assets/placeholder.svg" alt="Avito Mobile Marketplace" />
               </button>
@@ -237,7 +237,12 @@
 
     <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="Image preview">
       <button class="lightbox-close" aria-label="Close preview">×</button>
-      <img class="lightbox-image" alt="Preview" />
+      <button class="lightbox-prev" aria-label="Previous image">‹</button>
+      <button class="lightbox-next" aria-label="Next image">›</button>
+      <div class="lightbox-content">
+        <img class="lightbox-image" alt="Preview" />
+        <div class="lightbox-counter" aria-live="polite"></div>
+      </div>
     </div>
 
     <!-- Custom Cursor -->

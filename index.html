@@ -46,11 +46,30 @@
       <nav class="primary-nav" aria-label="Primary navigation">
         <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">Menu</button>
         <ul id="nav-menu" class="nav-menu">
-          <li><a href="#work">Work</a></li>
+          <li>
+            <div class="dropdown">
+              <button class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Projects</button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#work" data-scroll-to="kalido">Kalido</a></li>
+                <li><a href="#work" data-scroll-to="mvideo">M.Video</a></li>
+                <li><a href="#work" data-scroll-to="jj">Johnson & Johnson</a></li>
+                <li><a href="#work" data-scroll-to="collaby">CollabY</a></li>
+                <li><a href="#work" data-scroll-to="vtb">VTB Bank</a></li>
+                <li><a href="#work" data-scroll-to="avito">Avito</a></li>
+              </ul>
+            </div>
+          </li>
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
-        <a class="button primary header-contact" href="#contact" data-cursor-label="Get in Touch">Get in Touch</a>
+        <div class="header-actions">
+          <button class="theme-toggle" aria-label="Toggle theme" id="theme-toggle">
+            <span class="theme-icon light-icon">🌙</span>
+            <span class="theme-icon dark-icon" style="display: none;">☀️</span>
+          </button>
+          <a class="button primary header-cv" href="assets/cv.pdf" download="Ilia_Avramenko_CV.pdf" data-cursor-label="Download CV">Download CV</a>
+          <a class="button primary header-contact" href="#contact" data-cursor-label="Get in Touch">Get in Touch</a>
+        </div>
       </nav>
     </header>
 
@@ -80,7 +99,7 @@
 
           <div class="grid portfolio-grid" id="portfolio-grid">
             <!-- Kalido Project - Big Card -->
-            <article class="card case-card case-featured" data-category="product">
+            <article class="card case-card case-featured" data-category="product" id="kalido">
               <button class="card-media" data-gallery="kalido-gallery" aria-label="Open Kalido case study">
                 <img src="assets/placeholder.svg" alt="Kalido AI-Powered Internal Talent Marketplace" />
               </button>
@@ -108,8 +127,30 @@
               </div>
             </article>
 
+            <!-- M.Video Project -->
+            <article class="card case-card case-featured" data-category="product" id="mvideo">
+              <button class="card-media" data-gallery="mvideo-gallery" aria-label="Open M.Video case study">
+                <img src="assets/placeholder.svg" alt="M.Video Digital Experience" />
+              </button>
+              <div class="card-body">
+                <h3 class="card-title">M.Video</h3>
+                <p class="card-meta">Digital Experience • Product Design</p>
+              </div>
+            </article>
+
+            <!-- Johnson & Johnson Project -->
+            <article class="card case-card case-featured" data-category="product" id="jj">
+              <button class="card-media" data-gallery="jj-gallery" aria-label="Open Johnson & Johnson case study">
+                <img src="assets/J&J_0-1.png" alt="Johnson & Johnson Healthcare Platform" />
+              </button>
+              <div class="card-body">
+                <h3 class="card-title">Johnson & Johnson</h3>
+                <p class="card-meta">Healthcare Platform • UX Research & Design</p>
+              </div>
+            </article>
+
             <!-- CollabY Project -->
-            <article class="card case-card case-featured" data-category="product">
+            <article class="card case-card case-featured" data-category="product" id="collaby">
               <button class="card-media" data-gallery="collaby-gallery" aria-label="Open CollabY case study">
                 <img src="assets/placeholder.svg" alt="CollabY Decentralized Influencer dApp" />
               </button>
@@ -120,7 +161,7 @@
             </article>
 
             <!-- VTB Bank Project -->
-            <article class="card case-card case-featured" data-category="fintech">
+            <article class="card case-card case-featured" data-category="fintech" id="vtb">
               <button class="card-media" data-gallery="vtb-gallery" aria-label="Open VTB Bank case study">
                 <img src="assets/placeholder.svg" alt="VTB Bank Digital Banking Platform" />
               </button>
@@ -130,30 +171,8 @@
               </div>
             </article>
 
-            <!-- Ferrari Project -->
-            <article class="card case-card case-featured" data-category="product">
-              <button class="card-media" data-gallery="ferrari-gallery" aria-label="Open Ferrari case study">
-                <img src="assets/placeholder.svg" alt="Ferrari Digital Experience" />
-              </button>
-              <div class="card-body">
-                <h3 class="card-title">Ferrari</h3>
-                <p class="card-meta">Digital Experience • Product Design</p>
-              </div>
-            </article>
-
-            <!-- Johnson & Johnson Project -->
-            <article class="card case-card case-featured" data-category="product">
-              <button class="card-media" data-gallery="jj-gallery" aria-label="Open Johnson & Johnson case study">
-                <img src="assets/J&J_0-1.png" alt="Johnson & Johnson Healthcare Platform" />
-              </button>
-              <div class="card-body">
-                <h3 class="card-title">Johnson & Johnson</h3>
-                <p class="card-meta">Healthcare Platform • UX Research & Design</p>
-              </div>
-            </article>
-
             <!-- Avito Project -->
-            <article class="card case-card case-featured" data-category="mobile">
+            <article class="card case-card case-featured" data-category="mobile" id="avito">
               <button class="card-media" data-gallery="avito-gallery" aria-label="Open Avito case study">
                 <img src="assets/placeholder.svg" alt="Avito Mobile Marketplace" />
               </button>

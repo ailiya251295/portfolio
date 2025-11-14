@@ -210,6 +210,68 @@
   // Initialize liquid ether effect
   initLiquidEther();
 
+  // Theme Toggle
+  function initThemeToggle() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    
+    // Check for saved theme preference or default to light
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    html.setAttribute('data-theme', savedTheme);
+    
+    themeToggle?.addEventListener('click', () => {
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    });
+  }
+  initThemeToggle();
+
+  // Dropdown functionality
+  function initDropdown() {
+    const dropdowns = document.querySelectorAll('.dropdown');
+    
+    dropdowns.forEach(dropdown => {
+      const toggle = dropdown.querySelector('.dropdown-toggle');
+      
+      toggle?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isActive = dropdown.classList.contains('active');
+        
+        // Close all dropdowns
+        dropdowns.forEach(d => d.classList.remove('active'));
+        
+        // Toggle current dropdown
+        if (!isActive) {
+          dropdown.classList.add('active');
+        }
+      });
+    });
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.dropdown')) {
+        dropdowns.forEach(d => d.classList.remove('active'));
+      }
+    });
+  }
+  initDropdown();
+
+  // Smooth scroll to project
+  document.querySelectorAll('[data-scroll-to]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('data-scroll-to');
+      const target = document.getElementById(targetId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Close dropdown
+        document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+      }
+    });
+  });
+
   // Mobile navigation
   const navToggle = document.querySelector('.nav-toggle');
   const navMenu = document.getElementById('nav-menu');
@@ -249,7 +311,7 @@
     'vtb-gallery': [
       'assets/placeholder.svg'
     ],
-    'ferrari-gallery': [
+    'mvideo-gallery': [
       'assets/placeholder.svg'
     ],
     'jj-gallery': [

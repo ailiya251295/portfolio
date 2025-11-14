@@ -174,6 +174,42 @@
   // Initialize custom cursor
   initCustomCursor();
 
+  // Liquid Ether Background - Interactive mouse movement
+  function initLiquidEther() {
+    const bg = document.querySelector('.liquid-ether-bg');
+    if (!bg) return;
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let targetX = 0;
+    let targetY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function updateBackground() {
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+      const deltaX = (mouseX - centerX) / window.innerWidth;
+      const deltaY = (mouseY - centerY) / window.innerHeight;
+
+      targetX += (deltaX * 10 - targetX) * 0.05;
+      targetY += (deltaY * 10 - targetY) * 0.05;
+
+      bg.style.setProperty('--mouse-x', `${targetX}%`);
+      bg.style.setProperty('--mouse-y', `${targetY}%`);
+
+      requestAnimationFrame(updateBackground);
+    }
+
+    updateBackground();
+  }
+
+  // Initialize liquid ether effect
+  initLiquidEther();
+
   // Mobile navigation
   const navToggle = document.querySelector('.nav-toggle');
   const navMenu = document.getElementById('nav-menu');

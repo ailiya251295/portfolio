@@ -494,7 +494,10 @@
   document.querySelectorAll('[data-gallery]').forEach((el) => {
     el.addEventListener('click', () => {
       const galleryId = el.getAttribute('data-gallery');
-      const imgSrc = el.querySelector('img')?.getAttribute('src');
+      // Try to get image src from the element or its parent card
+      const imgSrc = el.querySelector('img')?.getAttribute('src') || 
+                     el.closest('.case-card')?.querySelector('img')?.getAttribute('src') ||
+                     galleries[galleryId]?.[0];
       if (galleryId && galleries[galleryId] && imgSrc) {
         openCaseModal(imgSrc, galleryId);
       }

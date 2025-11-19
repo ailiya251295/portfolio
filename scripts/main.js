@@ -1,4 +1,10 @@
 (function () {
+  // Prevent scroll restoration on page load
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  
+  
   // Password Protection
   const CORRECT_PASSWORD = 'portfolio2024'; // Change this to your desired password
   const passwordOverlay = document.getElementById('password-overlay');
@@ -20,6 +26,53 @@
     passwordOverlay.classList.add('hidden');
     mainContent.classList.add('visible');
     mainContent.style.display = 'block';
+    
+    // Force a reflow to ensure sticky positioning works
+    void mainContent.offsetHeight;
+    
+    // Initialize sticky header after content is shown
+    setTimeout(() => {
+      initStickyHeader();
+    }, 50);
+    
+    // Scroll to top only once after everything is initialized
+    setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }, 150);
+  }
+  
+  // Fixed header initialization function
+  function initStickyHeader() {
+    const siteHeader = document.querySelector('.site-header');
+    if (!siteHeader) {
+      console.error('Site header not found');
+      return;
+    }
+    
+    const scrollThreshold = 100;
+    let lastScrollTop = 0;
+    
+    function handleScroll() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      // Always show header, just change styling when scrolled
+      if (scrollTop > scrollThreshold) {
+        siteHeader.classList.add('scrolled');
+        siteHeader.classList.remove('hidden');
+      } else {
+        siteHeader.classList.remove('scrolled');
+        siteHeader.classList.remove('hidden');
+      }
+      
+      lastScrollTop = scrollTop;
+    }
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Check initial state
+    
+    console.log('Fixed header initialized');
   }
 
   // Handle password form submission
@@ -141,6 +194,19 @@
     document.querySelectorAll('button').forEach(el => {
       toggleHover(el, 1.4, '', 'cursor-button');
     });
+
+    // Add cursor labels for case cards and subprojects (desktop only)
+    if (window.matchMedia('(min-width: 761px)').matches) {
+      // Case cards - "view more"
+      document.querySelectorAll('.case-card').forEach(card => {
+        toggleHover(card, 1.6, 'view more', 'cursor-hover');
+      });
+
+      // Subprojects - "view details"
+      document.querySelectorAll('.subproject').forEach(subproject => {
+        toggleHover(subproject, 1.6, 'view details', 'cursor-hover');
+      });
+    }
 
     // Click ripple effect
     document.addEventListener('mousedown', () => {
@@ -271,22 +337,37 @@
     });
   }
 
-  // Sticky header scroll behavior
-  const siteHeader = document.querySelector('.site-header');
-  if (siteHeader) {
-    function handleScroll() {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      
-      if (scrollTop > 0) {
-        siteHeader.classList.add('scrolled');
-      } else {
-        siteHeader.classList.remove('scrolled');
-      }
-    }
-    
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Check initial state
+  // Back to top button - scroll to absolute top
+  const backToTop = document.querySelector('.back-to-top');
+  if (backToTop) {
+    backToTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      // Scroll to absolute top with all methods
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      // Force scroll after a brief delay to ensure it works
+      setTimeout(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }, 100);
+    });
   }
+
+  // Initialize sticky header if content is already visible (no password protection)
+  if (mainContent && mainContent.style.display !== 'none') {
+    initStickyHeader();
+  }
+  
+  // Also try to initialize after a delay in case content becomes visible later
+  setTimeout(() => {
+    const siteHeader = document.querySelector('.site-header');
+    if (siteHeader && !siteHeader.classList.contains('sticky-initialized')) {
+      initStickyHeader();
+      siteHeader.classList.add('sticky-initialized');
+    }
+  }, 500);
 
   // Portfolio filters - removed
 
@@ -509,7 +590,11 @@
 
   // Handle gallery triggers - open case modal
   document.querySelectorAll('[data-gallery]').forEach((el) => {
-    el.addEventListener('click', () => {
+    el.addEventListener('click', (e) => {
+      // Prevent default for links
+      if (el.tagName === 'A') {
+        e.preventDefault();
+      }
       const galleryId = el.getAttribute('data-gallery');
       // Try to get image src from the element or its parent card
       const imgSrc = el.querySelector('img')?.getAttribute('src') || 
@@ -528,6 +613,76 @@
       if (src) openLightbox(src);
     });
   });
+
+  // Contact form handling
+  const contactForm = document.querySelector('.contact-form');
+  const formToast = document.getElementById('form-toast');
+  
+  function showToast(message, type) {
+    if (!formToast) return;
+    
+    formToast.textContent = message;
+    formToast.className = `form-toast ${type}`;
+    formToast.classList.add('show');
+    
+    setTimeout(() => {
+      formToast.classList.remove('show');
+    }, 4000);
+  }
+  
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const submitButton = contactForm.querySelector('button[type="submit"]');
+      const originalText = submitButton.textContent;
+      const formData = new FormData(contactForm);
+      
+      // Disable submit button and show loading state
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+      
+      try {
+        // For Netlify Forms
+        const response = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData).toString()
+        });
+        
+        if (response.ok) {
+          // Show success message
+          submitButton.textContent = 'Sent!';
+          submitButton.style.background = '#10b981';
+          contactForm.reset();
+          showToast('Message sent successfully!', 'success');
+          
+          // Reset button after 3 seconds
+          setTimeout(() => {
+            submitButton.textContent = originalText;
+            submitButton.style.background = '';
+            submitButton.disabled = false;
+          }, 3000);
+        } else {
+          throw new Error('Form submission failed');
+        }
+      } catch (error) {
+        // Show error message
+        submitButton.textContent = 'Error - Try again';
+        submitButton.style.background = '#ef4444';
+        showToast('Failed to send message. Please try again.', 'error');
+        
+        // Reset button after 3 seconds
+        setTimeout(() => {
+          submitButton.textContent = originalText;
+          submitButton.style.background = '';
+          submitButton.disabled = false;
+        }, 3000);
+        
+        console.error('Form submission error:', error);
+      }
+    });
+  }
 })();
 
 

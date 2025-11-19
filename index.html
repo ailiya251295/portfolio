@@ -6,6 +6,12 @@
     <meta name="theme-color" content="#0f172a" />
     <title>Ilia Avramenko – Designer Portfolio</title>
     <meta name="description" content="Portfolio website for a designer showcasing selected work, services, and contact details." />
+    <script>
+      // Prevent scroll restoration immediately
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -41,7 +47,6 @@
     <header class="site-header">
       <div class="header-container">
         <a class="brand" href="#home" aria-label="Go to home">
-          <img src="assets/placeholder.svg" alt="Logo" width="28" height="28" />
           <span>Ilia Avramenko</span>
         </a>
         <div class="header-right">
@@ -67,16 +72,11 @@
                   </ul>
                 </div>
               </li>
-              <li><a href="about.html">About</a></li>
-              <li><a href="#contact">Contact</a></li>
             </ul>
           </nav>
           <div class="header-actions">
-            <button class="theme-toggle" aria-label="Toggle theme" id="theme-toggle">
-              <span class="theme-icon light-icon">🌙</span>
-              <span class="theme-icon dark-icon" style="display: none;">☀️</span>
-            </button>
-            <a class="button ghost header-cv" href="assets/cv.pdf" download="Ilia_Avramenko_CV.pdf">Download CV</a>
+            <a class="header-linkedin" href="https://www.linkedin.com/in/iliya-avr/" target="_blank" rel="noreferrer noopener">LinkedIn</a>
+            <a class="button primary header-cv" href="assets/cv.pdf" download="Ilia_Avramenko_CV.pdf">Download CV</a>
             <a class="button primary header-contact" href="#contact">Get in Touch</a>
           </div>
         </div>
@@ -84,11 +84,14 @@
     </header>
 
     <main id="home" class="site-main">
-      <div class="header-spacer"></div>
+      <div class="header-spacer" style="height: 100px;"></div>
       <section class="hero" aria-labelledby="hero-title">
         <div class="container">
-          <h1 id="hero-title">Hi, I'm Ilia Avramenko — Senior Product Designer with 9+ Years of Experience</h1>
-          <p class="lead">I deliver user-centered digital solutions for top brands like Ferrari, VTB, Johnson & Johnson, and Avito. Specializing in UX design, data visualization, and AR/VR interfaces. I'm passionate about building robust design systems and exploring new frontiers in technology.</p>
+          <h1 id="hero-title">Hi, I'm Ilia — Senior Product Designer</h1>
+          <p class="hero-tagline">Designing intuitive interfaces for complex data</p>
+          <p class="lead">Over 9 years, I've designed data-heavy products for fintech, healthcare, and enterprise platforms. Currently working at Kalido as a Staff Product Designer. Previously led design at EPAM for clients navigating complex financial and operational systems.</p>
+          <p class="lead-continuation">I believe the best data product is one users actually understand and trust. My approach: deep user research, progressive disclosure, and design that reveals complexity gradually.</p>
+          <p class="hero-caption">Based in London, UK • Open to senior roles in data-driven products</p>
           <div class="hero-cta">
             <a class="button primary" href="#work">View Work</a>
             <a class="button ghost" href="#contact">Let's talk</a>
@@ -116,21 +119,25 @@
                     <h4>Design System</h4>
                     <p>Comprehensive design system with 50+ components</p>
                     <button class="button ghost subproject-btn" data-gallery="kalido-gallery">View details</button>
+                    <a href="#" class="subproject-link" data-gallery="kalido-gallery">View details</a>
                   </div>
                   <div class="subproject">
                     <h4>Mobile App</h4>
                     <p>iOS and Android native applications</p>
                     <button class="button ghost subproject-btn" data-gallery="kalido-gallery">View details</button>
+                    <a href="#" class="subproject-link" data-gallery="kalido-gallery">View details</a>
                   </div>
                   <div class="subproject">
                     <h4>Web Platform</h4>
                     <p>Responsive web application for talent management</p>
                     <button class="button ghost subproject-btn" data-gallery="kalido-gallery">View details</button>
+                    <a href="#" class="subproject-link" data-gallery="kalido-gallery">View details</a>
                   </div>
                   <div class="subproject">
                     <h4>Customer Support</h4>
                     <p>Optimized support workflows and UI</p>
                     <button class="button ghost subproject-btn" data-gallery="kalido-gallery">View details</button>
+                    <a href="#" class="subproject-link" data-gallery="kalido-gallery">View details</a>
                   </div>
                 </div>
                 <button class="button primary case-view-btn" data-gallery="kalido-gallery">View details</button>
@@ -205,16 +212,13 @@
           <div>
             <h2 id="contact-title">Let's build something together</h2>
             <p>For project inquiries and collaborations, reach out and I'll get back within 1–2 business days. I'm open to discussing new opportunities, freelance projects, or just grabbing a coffee to talk design and innovation.</p>
-            <div class="contact-actions">
-              <a class="button primary" href="assets/cv.pdf" download="Ilia_Avramenko_CV.pdf">Download CV</a>
-            </div>
             <ul class="contact-list">
               <li><a href="mailto:ailiya251295uk@gmail.com">ailiya251295uk@gmail.com</a></li>
               <li><a href="https://www.linkedin.com/in/iliya-avr/" target="_blank" rel="noreferrer noopener">LinkedIn</a></li>
-              <li><a href="https://github.com/ailiya251295" target="_blank" rel="noreferrer noopener">GitHub</a></li>
             </ul>
           </div>
           <form class="contact-form" name="contact" netlify>
+            <input type="hidden" name="form-name" value="contact" />
             <div class="field">
               <label for="name">Name</label>
               <input id="name" name="name" type="text" autocomplete="name" required />
@@ -229,6 +233,7 @@
             </div>
             <button class="button primary" type="submit">Send</button>
           </form>
+          <div id="form-toast" class="form-toast" role="alert" aria-live="polite"></div>
         </div>
       </section>
     </main>

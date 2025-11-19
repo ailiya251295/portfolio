@@ -271,6 +271,23 @@
     });
   }
 
+  // Sticky header scroll behavior
+  const siteHeader = document.querySelector('.site-header');
+  if (siteHeader) {
+    function handleScroll() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      if (scrollTop > 0) {
+        siteHeader.classList.add('scrolled');
+      } else {
+        siteHeader.classList.remove('scrolled');
+      }
+    }
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Check initial state
+  }
+
   // Portfolio filters - removed
 
   // Gallery definitions

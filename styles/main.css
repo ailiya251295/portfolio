@@ -148,10 +148,16 @@ img { max-width: 100%; height: auto; display: block; }
 .container { width: min(1100px, 92%); margin-inline: auto; }
 
 .site-header {
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 50;
   padding: 1.5rem 0;
   margin-bottom: 2rem;
+  transition: padding 0.3s ease;
+}
+.site-header.scrolled {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 .header-container {
   width: min(1100px, 92%);
@@ -168,6 +174,11 @@ img { max-width: 100%; height: auto; display: block; }
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   flex-wrap: nowrap;
   overflow: hidden;
+  transition: border-radius 0.3s ease, padding 0.3s ease;
+}
+.site-header.scrolled .header-container {
+  border-radius: 0 0 24px 24px;
+  padding: 0.75rem 1.5rem;
 }
 [data-theme="dark"] .header-container {
   background: rgba(15, 23, 42, 0.8);
@@ -185,12 +196,16 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .brand img { border-radius: 6px; }
 
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
 .primary-nav { 
   display: flex; 
   align-items: center; 
   gap: 1rem; 
-  flex: 1;
-  justify-content: center;
   min-width: 0;
 }
 .nav-toggle { 
@@ -480,7 +495,12 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .card-media { display: block; width: 100%; border: none; padding: 0; background: transparent; cursor: zoom-in; }
 .case-card .card-media img { width: 100%; aspect-ratio: 16 / 8; object-fit: cover; }
-.case-card .card-body { padding: 1.5rem; border-top: 1px solid var(--border); }
+.case-card .card-body { 
+  padding: 1.5rem; 
+  border-top: 1px solid var(--border); 
+  display: flex;
+  flex-direction: column;
+}
 .case-card .card-title { margin: 0 0 .5rem; font-size: 1.3rem; font-weight: 700; }
 .case-card .card-meta { margin: 0 0 1.25rem; color: var(--muted); font-size: 1rem; }
 .subprojects { 
@@ -514,8 +534,10 @@ img { max-width: 100%; height: auto; display: block; }
   padding: 0.5rem 0.75rem;
 }
 .case-view-btn {
-  width: 100%;
+  width: auto;
   margin-top: 1.25rem;
+  align-self: flex-end;
+  margin-left: auto;
 }
 
 @media (min-width: 640px) {

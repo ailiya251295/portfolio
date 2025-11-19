@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -78,6 +78,10 @@
             <a class="header-linkedin" href="https://www.linkedin.com/in/iliya-avr/" target="_blank" rel="noreferrer noopener">LinkedIn</a>
             <a class="button primary header-cv" href="assets/cv.pdf" download="Ilia_Avramenko_CV.pdf">Download CV</a>
             <a class="button primary header-contact" href="#contact">Get in Touch</a>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" type="button">
+              <span class="light-icon">☀️</span>
+              <span class="dark-icon">🌙</span>
+            </button>
           </div>
         </div>
       </div>
@@ -250,8 +254,8 @@
       <div class="case-modal-backdrop"></div>
       <div class="case-modal-container">
         <button class="case-modal-close" aria-label="Close case study">×</button>
-        <button class="case-modal-prev" aria-label="Previous image">‹</button>
-        <button class="case-modal-next" aria-label="Next image">›</button>
+        <button class="case-modal-prev" aria-label="Previous image"><span>‹</span></button>
+        <button class="case-modal-next" aria-label="Next image"><span>›</span></button>
         <div class="case-modal-content">
           <img class="case-modal-image" alt="Case study image" />
           <div class="case-modal-counter" aria-live="polite"></div>

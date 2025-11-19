@@ -28,12 +28,15 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-  background: var(--bg);
+  background: transparent;
   color: var(--text);
   line-height: 1.6;
   cursor: none;
   position: relative;
   overflow-x: hidden;
+}
+html {
+  background: var(--bg);
 }
 
 /* Liquid Ether Background Effect */
@@ -59,7 +62,7 @@ body {
   position: absolute;
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
   filter: blur(120px);
-  opacity: 0.7;
+  opacity: 0.8;
   mix-blend-mode: screen;
   animation: blobFloat 20s ease-in-out infinite;
   will-change: transform;
@@ -129,9 +132,10 @@ body {
   position: relative;
   z-index: 1;
   background: transparent;
+  min-height: 100vh;
 }
 .site-main {
-  background: var(--bg);
+  background: transparent;
   position: relative;
   z-index: 1;
 }
@@ -149,9 +153,12 @@ img { max-width: 100%; height: auto; display: block; }
   justify-content: space-between;
   gap: 1rem; 
   padding: 1rem 1rem;
-  background: var(--surface);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: saturate(1.2) blur(8px);
   border-bottom: 1px solid var(--border);
+}
+[data-theme="dark"] .site-header {
+  background: rgba(15, 23, 42, 0.8);
 }
 .brand { display: inline-flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--text); font-weight: 600; }
 .brand img { border-radius: 6px; }
@@ -282,7 +289,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 .hero { 
   padding: 6rem 0 3rem; 
-  background: var(--bg);
+  background: transparent;
   border-bottom: 1px solid var(--border); 
 }
 .hero h1 { font-size: clamp(2rem, 6vw, 3.2rem); line-height: 1.15; margin: 0 0 1rem; letter-spacing: -0.02em; }
@@ -364,7 +371,8 @@ img { max-width: 100%; height: auto; display: block; }
   grid-column: span 12; 
 }
 .case-card {
-  background: var(--surface);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
   border: 2px solid rgba(0, 0, 0, 0.1);
   border-radius: .8rem;
   overflow: hidden;
@@ -373,6 +381,7 @@ img { max-width: 100%; height: auto; display: block; }
   box-shadow: 0 1px 2px rgba(0,0,0,0.04);
 }
 [data-theme="dark"] .case-card {
+  background: rgba(30, 41, 59, 0.7);
   border-color: rgba(255, 255, 255, 0.1);
 }
 .case-card:hover {

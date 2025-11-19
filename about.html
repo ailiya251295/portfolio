@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0f172a" />
+    <title>About – Ilia Avramenko</title>
+    <meta name="description" content="About Ilia Avramenko - Senior Product Designer with 9+ years of experience." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles/main.css" />
+  </head>
+  <body>
+    <!-- Password Protection Overlay -->
+    <div id="password-overlay" class="password-overlay">
+      <div class="password-modal">
+        <div class="password-header">
+          <h2>Portfolio Access</h2>
+          <p>Please enter the password to view this portfolio</p>
+        </div>
+        <form id="password-form" class="password-form">
+          <div class="password-field">
+            <input type="password" id="password-input" placeholder="Enter password" required>
+            <button type="submit" class="password-submit">Access Portfolio</button>
+          </div>
+          <div id="password-error" class="password-error" style="display: none;">
+            Incorrect password. Please try again.
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="main-content" style="display: none;">
+    <!-- Liquid Ether Background -->
+    <div class="liquid-ether-bg">
+      <div class="liquid-blob blob-1"></div>
+      <div class="liquid-blob blob-2"></div>
+      <div class="liquid-blob blob-3"></div>
+      <div class="liquid-blob blob-4"></div>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Go to home">
+        <img src="assets/placeholder.svg" alt="Logo" width="28" height="28" />
+        <span>Ilia Avramenko</span>
+      </a>
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">Menu</button>
+        <ul id="nav-menu" class="nav-menu">
+          <li>
+            <div class="dropdown">
+              <button class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Projects</button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="index.html#work" data-scroll-to="kalido">Kalido</a></li>
+                <li><a href="index.html#work" data-scroll-to="mvideo">M.Video</a></li>
+                <li><a href="index.html#work" data-scroll-to="jj">Johnson & Johnson</a></li>
+                <li><a href="index.html#work" data-scroll-to="collaby">CollabY</a></li>
+                <li><a href="index.html#work" data-scroll-to="vtb">VTB Bank</a></li>
+                <li><a href="index.html#work" data-scroll-to="avito">Avito</a></li>
+              </ul>
+            </div>
+          </li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <div class="header-actions">
+          <button class="theme-toggle" aria-label="Toggle theme" id="theme-toggle">
+            <span class="theme-icon light-icon">🌙</span>
+            <span class="theme-icon dark-icon" style="display: none;">☀️</span>
+          </button>
+          <a class="button ghost header-cv" href="assets/cv.pdf" download="Ilia_Avramenko_CV.pdf">Download CV</a>
+          <a class="button primary header-contact" href="index.html#contact">Get in Touch</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="site-main">
+      <section id="about" class="section" aria-labelledby="about-title">
+        <div class="container about">
+          <div>
+            <h1 id="about-title">About</h1>
+            <p>I'm Ilia, a Senior Product Designer with 9+ years of experience delivering user-centered digital solutions for top brands. My unique background in development empowers me to create practical, scalable designs that delight users and drive business results.</p>
+            <p>I'm passionate about building robust design systems, crafting clear and logical user experiences, and exploring new frontiers in AR/VR and neurointerfaces. Continuous learning fuels my approach, and I thrive in collaborative, cross-functional teams.</p>
+            <p><strong>Education:</strong> Master of Science in Human-Computer Interaction and Bachelor of Science in Computer Science from ITMO University, Saint-Petersburg.</p>
+            <ul class="bullets">
+              <li>9+ years across product design, UX research, and design systems</li>
+              <li>Led design for Kalido's AI-powered talent marketplace</li>
+              <li>Worked with top brands: Ferrari, VTB, Johnson & Johnson, Avito</li>
+              <li>Global Talent Visa holder based in London</li>
+              <li>Available for select freelance projects</li>
+            </ul>
+          </div>
+          <div class="about-aside">
+            <div class="stat">
+              <span class="stat-value">9+</span>
+              <span class="stat-label">Years experience</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">25+</span>
+              <span class="stat-label">Design systems</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">8</span>
+              <span class="stat-label">Industries</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© <span id="year"></span> Ilia Avramenko. All rights reserved.</p>
+        <a class="back-to-top" href="index.html" aria-label="Back to home">← Back to Home</a>
+      </div>
+    </footer>
+
+    <!-- Custom Cursor -->
+    <div id="cursor">
+      <div id="cursor-primary"></div>
+      <div id="cursor-trail"></div>
+      <div id="cursor-label"></div>
+    </div>
+
+    <script src="scripts/main.js"></script>
+    </div> <!-- End main-content -->
+  </body>
+</html>
+

@@ -101,9 +101,7 @@
       mouseX = e.clientX;
       mouseY = e.clientY;
       
-      requestAnimationFrame(() => {
-        cursor.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
-      });
+      cursor.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
     });
 
     // Trail effect with delay
@@ -114,7 +112,7 @@
       trailX += diffX * 0.1;
       trailY += diffY * 0.1;
       
-      trail.style.transform = `translate(${trailX}px, ${trailY}px)`;
+      trail.style.transform = `translate(${trailX}px, ${trailY}px) translate(-50%, -50%)`;
       requestAnimationFrame(updateTrail);
     }
     updateTrail();
@@ -141,16 +139,7 @@
     });
 
     document.querySelectorAll('button').forEach(el => {
-      toggleHover(el, 1.4, 'Click', 'cursor-button');
-    });
-
-    document.querySelectorAll('[data-cursor-label]').forEach(el => {
-      toggleHover(el, 1, el.dataset.cursorLabel, 'cursor-hover');
-    });
-
-    // Text hover effect
-    document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, span, li').forEach(el => {
-      toggleHover(el, 1, '', 'cursor-text');
+      toggleHover(el, 1.4, '', 'cursor-button');
     });
 
     // Click ripple effect
@@ -282,23 +271,7 @@
     });
   }
 
-  // Portfolio filters
-  const filters = Array.from(document.querySelectorAll('.filter-chip'));
-  const cards = Array.from(document.querySelectorAll('.portfolio-grid .card'));
-  function setActiveFilter(filter) {
-    filters.forEach((b) => b.classList.toggle('active', b.dataset.filter === filter));
-    if (filter === 'all') {
-      cards.forEach((c) => (c.style.display = 'block'));
-      return;
-    }
-    cards.forEach((c) => {
-      const cat = c.getAttribute('data-category');
-      c.style.display = cat === filter ? 'block' : 'none';
-    });
-  }
-  filters.forEach((btn) =>
-    btn.addEventListener('click', () => setActiveFilter(btn.dataset.filter || 'all'))
-  );
+  // Portfolio filters - removed
 
   // Gallery definitions
   const galleries = {

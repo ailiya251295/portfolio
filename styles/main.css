@@ -405,6 +405,29 @@ img { max-width: 100%; height: auto; display: block; }
   gap: 0.5rem;
   flex-shrink: 0;
   white-space: nowrap;
+  position: relative;
+}
+.header-actions > * {
+  position: relative;
+  z-index: 1;
+}
+.header-actions .button,
+.header-actions .header-linkedin {
+  z-index: 2;
+}
+.header-actions-bg {
+  position: absolute;
+  inset: -1rem;
+  pointer-events: none;
+  z-index: 0;
+  overflow: visible;
+}
+.theme-toggle-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
 }
 .theme-toggle {
   background: transparent;
@@ -419,6 +442,8 @@ img { max-width: 100%; height: auto; display: block; }
   height: 2.5rem;
   transition: none !important;
   transform: translateX(4px) !important;
+  position: relative;
+  z-index: 3;
 }
 .theme-toggle:hover {
   background: transparent !important;
@@ -443,6 +468,130 @@ img { max-width: 100%; height: auto; display: block; }
 [data-theme="light"] .light-icon {
   display: block !important;
 }
+
+/* Sunrays Animation (Light Theme) */
+.sunrays {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4rem;
+  height: 4rem;
+  pointer-events: none;
+  z-index: -1;
+  display: none;
+  transform-origin: center center;
+}
+[data-theme="light"] .sunrays {
+  display: block;
+}
+.sunray {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 2rem;
+  background: linear-gradient(to bottom, 
+    rgba(255, 200, 0, 0.5) 0%,
+    rgba(255, 200, 0, 0.35) 20%,
+    rgba(255, 200, 0, 0.1) 50%,
+    rgba(255, 200, 0, 0.05) 80%,
+    transparent 100%);
+  transform-origin: center center;
+  border-radius: 2.5px;
+  box-shadow: 0 0 4px rgba(255, 200, 0, 0.3);
+}
+.sunray-1 { transform: translate(-50%, -50%) rotate(0deg) translateY(-2rem); }
+.sunray-2 { transform: translate(-50%, -50%) rotate(45deg) translateY(-2rem); }
+.sunray-3 { transform: translate(-50%, -50%) rotate(90deg) translateY(-2rem); }
+.sunray-4 { transform: translate(-50%, -50%) rotate(135deg) translateY(-2rem); }
+.sunray-5 { transform: translate(-50%, -50%) rotate(180deg) translateY(-2rem); }
+.sunray-6 { transform: translate(-50%, -50%) rotate(225deg) translateY(-2rem); }
+.sunray-7 { transform: translate(-50%, -50%) rotate(270deg) translateY(-2rem); }
+.sunray-8 { transform: translate(-50%, -50%) rotate(315deg) translateY(-2rem); }
+@keyframes spinSunrays {
+  from { transform: translate(calc(-50% + 4px), -50%) rotate(0deg); }
+  to { transform: translate(calc(-50% + 4px), -50%) rotate(360deg); }
+}
+[data-theme="light"] .sunrays {
+  animation: spinSunrays 10s linear infinite;
+}
+
+/* Stars Animation (Dark Theme) */
+.stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  display: none;
+  overflow: visible;
+}
+[data-theme="dark"] .stars {
+  display: block;
+}
+.star {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.7rem;
+  line-height: 1;
+  animation: floatStar 6s ease-in-out infinite;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+}
+.star-1 {
+  top: 20%;
+  right: calc(2rem + 2px);
+  animation-delay: 0s;
+}
+.star-2 {
+  top: 50%;
+  right: calc(1.5rem + 2px);
+  animation-delay: 0.8s;
+}
+.star-3 {
+  top: 30%;
+  right: calc(0.5rem + 2px);
+  animation-delay: 1.6s;
+}
+.star-4 {
+  bottom: 25%;
+  right: calc(2.5rem + 2px);
+  animation-delay: 2.4s;
+}
+.star-5 {
+  top: 70%;
+  right: calc(1rem + 2px);
+  animation-delay: 3.2s;
+}
+.star-6 {
+  top: 10%;
+  right: calc(3rem + 2px);
+  animation-delay: 4s;
+}
+.star-7 {
+  bottom: 10%;
+  right: calc(0.8rem + 2px);
+  animation-delay: 4.8s;
+}
+@keyframes floatStar {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.4;
+  }
+  25% {
+    transform: translateY(-10px) translateX(5px);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-5px) translateX(-5px);
+    opacity: 0.6;
+  }
+  75% {
+    transform: translateY(-15px) translateX(3px);
+    opacity: 0.9;
+  }
+}
 .header-linkedin {
   display: none;
   color: var(--text);
@@ -451,6 +600,8 @@ img { max-width: 100%; height: auto; display: block; }
   font-weight: 400;
   margin-right: calc(0.5rem + 4px);
   transition: opacity 0.2s ease;
+  position: relative;
+  z-index: 1;
 }
 .header-linkedin:hover {
   opacity: 0.7;
